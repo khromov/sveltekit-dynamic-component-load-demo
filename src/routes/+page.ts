@@ -13,13 +13,17 @@ export const load = (async ({ data }) => {
     data.article.forEach((component) => {
         // Push all components in current article
         // componentsToLoad.push(getComponentPromise(component.type))
-        componentsToLoad.push({
-            type: component.type,
-            promise: getComponentPromise(component.type),
-        });
+        componentsToLoad.push(component.type);
     });
 
-    const components = await (await Promise.all(componentsToLoad.map(ctl => ctl.promise))).map(c => c.default);
+    const components: any = {};
+
+    // TODO: Refactor to Promise.all
+    for(const component of [...new Set(componentsToLoad)]) { // Remove duplicates
+        console.log('Loading ', component); 
+        components[component] = (await getComponentPromise(component)).default;
+    }
+    // const components = await (await Promise.all(componentsToLoad.map(ctl => ctl.promise))).map(c => c.default);
 
     return {
         components, // Map the default exports

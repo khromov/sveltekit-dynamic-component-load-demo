@@ -2,4 +2,4 @@
     export let data;
 </script>
 
-<img src={data.src} />
+<img src={data.data.src} />

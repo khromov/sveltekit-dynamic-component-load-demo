@@ -10,7 +10,6 @@ export const load = (async ({ params }) => {
                 text: 'This is a heading!'
             }
         },
-        /*
         {
             id: 1,
             type: 'Text',
@@ -24,8 +23,14 @@ export const load = (async ({ params }) => {
             data: {
                 src: 'https://placekitten.com/600/600'
             }
-        }
-        */
+        },
+        {
+            id: 4,
+            type: 'Heading',
+            data: {
+                text: 'Another heading!'
+            }
+        },
     ];
 
     return {
