@@ -2,7 +2,7 @@
 
 A demo that shows how you can dynamically load different Svelte components depending on what content your backend API delivers.
 
-For example, if you have dozens of hundreds of different component types and receive article data from an external CMS, you only have to load the components that are
+For example, if you have dozens of hundreds of different component types and receive article data from an external API/CMS, you only have to load the components that are
 present in the current article, thus reducing your bundle size.
 
 Example:
@@ -16,7 +16,7 @@ If your Article API looks like this:
 },
 {
     type: 'Text',
-    text: 'Hello! I am an article with 3 different dynamic components: A heading, an image and text'
+    text: 'This is text!'
 }
 ```
 
