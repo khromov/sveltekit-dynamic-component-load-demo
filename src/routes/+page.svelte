@@ -1,9 +1,8 @@
-<script>
-	export let data;
-</script>
-
-{#each data.article as component (component.id)}
-    <div>
-        <svelte:component this={data?.components[component.type]} data={component} />
-    </div>
-{/each}
+<ul data-sveltekit-preload-data="off">
+    <li>
+        <a href="/article/0">Article 1 - 3 different dynamically loaded components</a>
+    </li>
+    <li>
+        <a href="/article/1">Article 2 - one dynamically loaded component</a>
+    </li>
+</ul>

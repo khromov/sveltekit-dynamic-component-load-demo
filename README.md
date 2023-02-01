@@ -1,39 +1,46 @@
-# create-svelte
+# SvelteKit Dynamic Component Load demo
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+A demo that shows how you can dynamically load different Svelte components depending on what content your backend API delivers.
 
-## Creating a project
+For example, if you have dozens of hundreds of different component types and receive article data from an external CMS, you only have to load the components that are
+present in the current article, thus reducing your bundle size.
 
-If you're seeing this, you've probably already done this step. Congrats!
+Example:
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+If your Article API looks like this:
 
-# create a new project in my-app
-npm create svelte@latest my-app
+```js
+{
+    type: 'Heading',
+    text: 'This is a heading!'
+},
+{
+    type: 'Text',
+    text: 'Hello! I am an article with 3 different dynamic components: A heading, an image and text'
+}
 ```
 
-## Developing
+...we only heed to load the `Heading.svelte` and `Text.svelte` components. Any other components won't be sent to the browser.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Live demo:
+https://sveltekit-dynamic-component-load-demo.vercel.app/
 
-```bash
+After clicking on an article, you can inspect the network tab in your browser to see that only components used in the current article are loaded.
+
+### Run locally
+
+```
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+Visit http://localhost:5173/
 
-To create a production version of your app:
+### Run with Node adapter
 
-```bash
-npm run build
+The Vercel adapter is the default, but if you want to build with the Node adapter you can use:
+
+```
+npm build:run:node
 ```
 
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-
+Visit http://localhost:3000/

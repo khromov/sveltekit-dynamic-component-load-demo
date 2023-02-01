@@ -1,32 +1,30 @@
 import type { PageLoad } from './$types';
-export const prerender = true;
+export const prerender = false;
 
 const getComponentPromise = (name: string) => {
-    return import(`../components/${name}.svelte`);
+    // $lib alias doesn't seem to work for dynamic imports
+    return import(`../../../lib/components/${name}.svelte`);
 };
 
 export const load = (async ({ data }) => {
-
-    // Load all required components here, this avoid loading unneeded components.
+    // Load all required components here
     const componentsToLoad: any[] = [];
 
-    data.article.forEach((component) => {
+    data.article.forEach((component: any) => {
         // Push all components in current article
-        // componentsToLoad.push(getComponentPromise(component.type))
         componentsToLoad.push(component.type);
     });
 
     const components: any = {};
 
-    // TODO: Refactor to Promise.all
+    // TODO: Can be refactored to Promise.all()
     for(const component of [...new Set(componentsToLoad)]) { // Remove duplicates
         console.log('Loading ', component); 
         components[component] = (await getComponentPromise(component)).default;
     }
-    // const components = await (await Promise.all(componentsToLoad.map(ctl => ctl.promise))).map(c => c.default);
 
     return {
-        components, // Map the default exports
-        article: data.article // TODO: Can we pass it automatically somehow?
+        components,
+        article: data.article // Pass on the data from +page.server.ts
     };
 }) satisfies PageLoad;

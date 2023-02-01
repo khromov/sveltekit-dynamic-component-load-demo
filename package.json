@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"run": "vite build && node build/index.js",
+		"build:run:node": "ADAPTER=node npm run build && node build/index.js",
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
