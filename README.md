@@ -3,7 +3,7 @@
 A demo that shows how you can dynamically load different Svelte components depending on what content your backend API delivers.
 
 For example, if you have dozens of hundreds of different component types and receive article data from an external API/CMS, you only have to load the components that are
-present in the current article, thus reducing your bundle size.
+present in the current article, thus reducing your bundle size through essentially bundle splitting every single component into a separate bundle.
 
 Example:
 
