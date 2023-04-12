@@ -20,7 +20,7 @@ If your Article API looks like this:
 }
 ```
 
-...we only heed to load the `Heading.svelte` and `Text.svelte` components. Any other components won't be sent to the browser.
+...we only need to load the `Heading.svelte` and `Text.svelte` components. Any other components won't be sent to the browser.
 
 Live demo:
 https://sveltekit-dynamic-component-load-demo.vercel.app/
