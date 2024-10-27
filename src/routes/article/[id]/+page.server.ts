@@ -53,8 +53,8 @@ export const load = (async ({ params }) => {
             article: articleContent?.[id]
         }
     } else {
-        throw error(404, {
-            message: 'Not found'
-          });
+        error(404, {
+                    message: 'Not found'
+                  });
     }
 }) satisfies PageServerLoad;
