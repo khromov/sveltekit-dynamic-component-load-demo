@@ -15,14 +15,17 @@ export const load = (async ({ data }) => {
 		componentsToLoad.push(component.type);
 	});
 
+	const uniqueComponents = [...new Set(componentsToLoad)]; // Remove duplicates
+
 	const components: any = {};
 
-	// TODO: Can be refactored to Promise.all()
-	for (const component of [...new Set(componentsToLoad)]) {
-		// Remove duplicates
-		console.log('Loading ', component);
-		components[component] = (await getComponentPromise(component)).default;
-	}
+	// Load all components in parallel using Promise.all
+	await Promise.all(
+		uniqueComponents.map(async (component) => {
+			console.log('Loading ', component);
+			components[component] = (await getComponentPromise(component)).default;
+		})
+	);
 
 	return {
 		components,
