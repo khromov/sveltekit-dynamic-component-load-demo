@@ -1,11 +1,12 @@
 <script lang="ts">
-	export let data;
+	let { data } = $props();
 </script>
 
 {#each data.article as section (section.id)}
-    <div>
-        <svelte:component this={data.components[section.type]} data={section} />
-    </div>
+	{@const SvelteComponent = data.components[section.type]}
+	<div>
+		<SvelteComponent data={section} />
+	</div>
 {/each}
 
 <a href="/">Go back</a>

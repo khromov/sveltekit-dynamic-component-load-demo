@@ -1,6 +1,6 @@
 import adapterVercel from '@sveltejs/adapter-vercel'; // Also works with adapter-node
 import adapterNode from '@sveltejs/adapter-node';
-import { vitePreprocess } from '@sveltejs/kit/vite';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 const adapter = process.env.ADAPTER === 'node' ? adapterNode : adapterVercel;
 
