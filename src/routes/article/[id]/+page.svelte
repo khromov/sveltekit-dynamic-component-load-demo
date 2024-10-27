@@ -1,10 +1,11 @@
 <script lang="ts">
-	export let data;
+    let { data } = $props();
 </script>
 
 {#each data.article as section (section.id)}
+    {@const SvelteComponent = data.components[section.type]}
     <div>
-        <svelte:component this={data.components[section.type]} data={section} />
+        <SvelteComponent data={section} />
     </div>
 {/each}
 
